@@ -10,7 +10,7 @@ ENV MPI_PATH=${PETSC_DIR}/${PETSC_ARCH}/bin/mpiexec
 ENV USER=pflotran_usr
 ENV UID=1000
 
-RUN mkdir -r ${HOME_DIR}/work
+RUN mkdir -p ${HOME_DIR}/work
 COPY pft.sh ${HOME_DIR}/work/
 RUN chmod 777 ${HOME_DIR}/work//pft.sh
 
