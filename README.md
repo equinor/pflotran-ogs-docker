@@ -11,7 +11,9 @@ Tested to run on:
 
 `docker run -it --mount src=<YOUR_HOST_WORK_DIR>,dst=/app/work,type=bind gchr.io/equinor/pflotran-ogs-docker:latest `
 
-Once inside the interactive terminal of the container you can then run `$MPI_PATH -n <N_THREAD> $PFT_PATH -pflotranin <PATH_TO_INPUT_FILE>`
+Once inside the interactive terminal of the container you can then run either:
+- `pft <PATH_TO_INPUT_FILE> <N_THREAD>`
+- `$MPI_PATH -n <N_THREAD> $PFT_PATH -pflotranin <PATH_TO_INPUT_FILE>`
 
 # Environmental variables
 

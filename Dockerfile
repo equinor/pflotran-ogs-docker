@@ -10,6 +10,10 @@ ENV MPI_PATH=${PETSC_DIR}/${PETSC_ARCH}/bin/mpiexec
 ENV USER=pflotran_usr
 ENV UID=1000
 
+RUN mkdir ${HOME_DIR}/work
+COPY pft.sh ${HOME_DIR}/work/
+RUN chmod 777 ${HOME_DIR}/work//pft.sh
+
 RUN apt update && \
     apt install git build-essential gfortran python python-six flex bison -y
 RUN groupadd --gid ${UID} ${USER} && useradd --uid ${UID} --gid ${UID} -m ${USER}
@@ -30,7 +34,5 @@ RUN git clone --depth=1 -b pflotran_ogs_1.6 https://bitbucket.org/opengosim/pflo
 WORKDIR ${HOME_DIR}/pflotran_ogs_1.6/src/pflotran
 RUN make -j8 pflotran
 
-RUN mkdir ${HOME_DIR}/work
 WORKDIR ${HOME_DIR}/work
-
 ENTRYPOINT ["/bin/bash"]
