@@ -38,6 +38,6 @@ jobs:
           platforms: linux/amd64
           tags: |
               ghcr.io/equinor/pflotran-ogs-docker:latest
-              ghcr.io/equinor/pflotran-ogs-docker:SHORT_SHA
+              ghcr.io/equinor/pflotran-ogs-docker:${{ env.SHORT_SHA}}   
           build-args: |
               THREAD=2
