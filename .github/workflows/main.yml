@@ -1,8 +1,6 @@
 name: Build image and publish on ghcr
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -14,7 +12,10 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-
+        
+      - name: Get pflotran_ogs last commit hash
+        run: |
+          echo "SHORT_SHA=$(git ls-remote https://bitbucket.org/opengosim/pflotran_ogs_1.6.git HEAD | cut -f1 | cut -c 1-7)" >> $GITHUB_ENV
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -35,6 +36,8 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/equinor/pflotran-ogs-docker:latest
+          tags: |
+              ghcr.io/equinor/pflotran-ogs-docker:latest
+              ghcr.io/equinor/pflotran-ogs-docker:SHORT_SHA
           build-args: |
               THREAD=2
