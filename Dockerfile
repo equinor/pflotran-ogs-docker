@@ -1,8 +1,7 @@
 FROM ubuntu:20.04
 LABEL org.opencontainers.image.source = "https://github.com/equinor/pflotran-ogs-docker"
-
+ARG THREAD=2
 ENV TZ=EUROPE/OSLO
-
 ENV HOME_DIR=/app
 ENV PFT_PATH=${HOME_DIR}/pflotran_ogs_1.6/src/pflotran/pflotran
 ENV PETSC_DIR=${HOME_DIR}/petsc
@@ -22,8 +21,8 @@ USER ${USER}
 # Install PETSc OGS fork
 RUN git clone --depth=1 -b master https://bitbucket.org/opengosim/petsc_ogs.git ${PETSC_DIR}
 WORKDIR ${PETSC_DIR}
-RUN ./configure --download-mpich=yes --download-hdf5=yes --download-fblaslapack=yes --download-metis=yes  --download-cmake=yes  --download-ptscotch=yes --download-hypre=yes --with-debugging=0 COPTFLAGS=-O3 CXXOPTFLAGS=-O3 FOPTFLAGS=-O3 -j8
-RUN make PETSC_DIR=${PETSC_DIR} PETSC_ARCH=${PETSC_ARCH} all -j8
+RUN ./configure --download-mpich=yes --download-hdf5=yes --download-fblaslapack=yes --download-metis=yes  --download-cmake=yes  --download-ptscotch=yes --download-hypre=yes --with-debugging=0 COPTFLAGS=-O3 CXXOPTFLAGS=-O3 FOPTFLAGS=-O3 -j${THREAD}
+RUN make PETSC_DIR=${PETSC_DIR} PETSC_ARCH=${PETSC_ARCH} all -j${THREAD}
 
 # Install PFLOTRAN-OGS
 WORKDIR ${HOME_DIR}
