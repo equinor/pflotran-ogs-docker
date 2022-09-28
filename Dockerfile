@@ -12,12 +12,14 @@ ENV UID=1000
 
 RUN apt update && \
     apt install git build-essential gfortran python python-six flex bison -y
-RUN groupadd --gid ${UID} ${USER} && useradd --uid ${UID} --gid ${UID} -m ${USER}
+# RUN groupadd --gid ${UID} ${USER} && useradd --uid ${UID} --gid ${UID} -m ${USER}
 
+COPY pft /usr/bin/
+RUN chmod 777 /usr/bin/pft
 WORKDIR ${HOME_DIR}
-COPY pft /usr/bin/ && chmod 777 /usr/bin/pft
-RUN chown ${USER} ${HOME_DIR}
-USER ${USER}
+# RUN chown ${USER} ${HOME_DIR}
+# USER ${USER}
+
 
 # Install PETSc OGS fork
 RUN git clone --depth=1 -b master https://bitbucket.org/opengosim/petsc_ogs.git ${PETSC_DIR}
