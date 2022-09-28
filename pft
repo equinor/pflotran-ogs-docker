@@ -7,5 +7,5 @@
 # For example:
 # pft spe10.in 4
 
-
+echo "$MPI_PATH -n $2 $PFT_PATH -pflotranin $WORK_DIR/$1"
 $MPI_PATH -n $2 $PFT_PATH -pflotranin $WORK_DIR/$1
