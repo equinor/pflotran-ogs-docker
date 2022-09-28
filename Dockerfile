@@ -15,8 +15,7 @@ RUN apt update && \
 RUN groupadd --gid ${UID} ${USER} && useradd --uid ${UID} --gid ${UID} -m ${USER}
 
 WORKDIR ${HOME_DIR}
-COPY pft.sh .
-RUN chmod 777 pft.sh
+COPY pft /usr/bin/ && chmod 777 /usr/bin/pft
 RUN chown ${USER} ${HOME_DIR}
 USER ${USER}
 
