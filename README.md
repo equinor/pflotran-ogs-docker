@@ -3,7 +3,10 @@ Docker image for PFLOTRAN-OGS v1.6
 https://docs.opengosim.com/
 
 # Tags
-The image is tagged with "latest" and the short SHA of the last commit of PFLOTRAN-OGS
+The image is tagged with:
+- "latest" 
+- PFLOTRAN-OGS version in the form of 1.6_sv9
+- Short SHA of the last commit of PFLOTRAN-OGS
 
 Tested to run on:
 - Ubuntu 20.04 (Native and WSL 2) on x86-64

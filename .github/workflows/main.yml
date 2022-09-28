@@ -12,7 +12,11 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-        
+      
+      - name: Get pflotran_ogs version
+        run: |
+          echo "PFT_VERSION=$(wget -q https://bitbucket.org/opengosim/pflotran_ogs_1.6/raw/HEAD/src/pflotran/option.F90 -O -| grep "pflotran_ogs_version" | cut -d"'" -f 2 | xargs | tr ' ' '_')" >> $GITHUB_ENV
+
       - name: Get pflotran_ogs last commit hash
         run: |
           echo "SHORT_SHA=$(git ls-remote https://bitbucket.org/opengosim/pflotran_ogs_1.6.git HEAD | cut -f1 | cut -c 1-7)" >> $GITHUB_ENV
@@ -39,5 +43,6 @@ jobs:
           tags: |
               ghcr.io/equinor/pflotran-ogs-docker:latest
               ghcr.io/equinor/pflotran-ogs-docker:${{ env.SHORT_SHA}}   
+              ghcr.io/equinor/pflotran-ogs-docker:${{ env.PFT_VERSION}}  
           build-args: |
               THREAD=2
