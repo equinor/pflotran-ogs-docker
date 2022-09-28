@@ -7,5 +7,5 @@
 # For example:
 # pft spe10.in 4
 
-echo "$MPI_PATH -n $2 $PFT_PATH -pflotranin $WORK_DIR/$1"
-/app/petsc/arch-linux2-c-opt/bin/mpiexec -n $2 /app/pflotran_ogs_1.6/src/pflotran/pflotran -pflotranin /app/work/$1
+echo "Submitting $WORK_DIR/$1 using $2 CPUs"
+$MPI_PATH -n $2 $PFT_PATH -pflotranin $WORK_DIR/$1

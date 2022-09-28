@@ -36,4 +36,4 @@ RUN make -j8 pflotran
 ENV WORK_DIR=${HOME_DIR}/work
 WORKDIR ${WORK_DIR}
 
-ENTRYPOINT ["/bin/bash", "-c", "pft"]
+ENTRYPOINT ["/bin/bash", "pft"]
