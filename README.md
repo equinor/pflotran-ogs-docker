@@ -12,7 +12,7 @@ Tested to run on:
 
 # To run
 
-`docker run -it --mount src=<YOUR_HOST_WORK_DIR>,dst=/app/work,type=bind gchr.io/equinor/pflotran-ogs-docker:latest `
+`docker run -it -v <YOUR_HOST_WORK_DIR>:/app/work gchr.io/equinor/pflotran-ogs-docker:latest `
 
 Once inside the interactive terminal of the container you can then run either:
 - `pft <PATH_TO_INPUT_FILE> <N_THREAD>`

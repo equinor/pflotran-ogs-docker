@@ -10,15 +10,13 @@ ENV MPI_PATH=${PETSC_DIR}/${PETSC_ARCH}/bin/mpiexec
 ENV USER=pflotran_usr
 ENV UID=1000
 
-RUN mkdir -p ${HOME_DIR}/work
-COPY pft.sh ${HOME_DIR}/work/
-RUN chmod 777 ${HOME_DIR}/work//pft.sh
-
 RUN apt update && \
     apt install git build-essential gfortran python python-six flex bison -y
 RUN groupadd --gid ${UID} ${USER} && useradd --uid ${UID} --gid ${UID} -m ${USER}
 
 WORKDIR ${HOME_DIR}
+COPY pft.sh .
+RUN chmod 777 pft.sh
 RUN chown ${USER} ${HOME_DIR}
 USER ${USER}
 
