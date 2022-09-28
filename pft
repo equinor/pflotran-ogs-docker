@@ -8,4 +8,4 @@
 # pft spe10.in 4
 
 
-$MPI_PATH -n $2 $PFT_PATH -pflotranin $1
+$MPI_PATH -n $2 $PFT_PATH -pflotranin $WORK_DIR/$1

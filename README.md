@@ -12,10 +12,15 @@ Tested to run on:
 
 # To run
 
-`docker run -it -v <YOUR_HOST_WORK_DIR>:/app/work gchr.io/equinor/pflotran-ogs-docker:latest `
+## CLI
+
+`docker run -v <YOUR_HOST_WORK_DIR>:/app/work gchr.io/equinor/pflotran-ogs-docker:latest <INPUT_FILE_NAME> <N_THREAD>`
+
+## Interactive
+`docker run -it -v <YOUR_HOST_WORK_DIR>:/app/work gchr.io/equinor/pflotran-ogs-docker:latest`
 
 Once inside the interactive terminal of the container you can then run either:
-- `pft <PATH_TO_INPUT_FILE> <N_THREAD>`
+- `pft <INPUT_FILE_NAME> <N_THREAD>`
 - `$MPI_PATH -n <N_THREAD> $PFT_PATH -pflotranin <PATH_TO_INPUT_FILE>`
 
 # Environmental variables

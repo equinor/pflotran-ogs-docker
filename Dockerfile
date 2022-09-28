@@ -31,5 +31,7 @@ RUN git clone --depth=1 -b pflotran_ogs_1.6 https://bitbucket.org/opengosim/pflo
 WORKDIR ${HOME_DIR}/pflotran_ogs_1.6/src/pflotran
 RUN make -j8 pflotran
 
-WORKDIR ${HOME_DIR}/work
-ENTRYPOINT ["/bin/bash"]
+ENV WORK_DIR=${HOME_DIR}/work
+WORKDIR ${WORK_DIR}
+
+ENTRYPOINT ["/bin/bash", "-c","pft"]
